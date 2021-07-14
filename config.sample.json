@@ -1,0 +1,58 @@
+{
+    "db": {
+        "username": "smartgarden",
+        "password": "sg2021sg",
+        "name": "smartgarden",
+        "host": "tu.direccion.ip.raspberry",
+        "dialect": "mariadb"
+    },
+    "api": {
+        "topic": "http://tu.direccion.ip.cloud:3000/v1/topics",
+        "sensor": "http://tu.direccion.ip.cloud:3000/v1/sensors",
+        "image": "http://tu.direccion.ip.cloud:3000/v1/images"
+    },
+    "limits": {
+        "maximumImageFiles": 10,
+        "dataCollectionTimeMs": 60000,
+        "imageCollectionTimeMs": 900000
+    },
+    "storagePath": {
+        "ambient": {
+            "image": "db/ambient/image"
+        }
+    },
+    "mqtt": {
+        "settings": {
+            "host": "tu.direccion.ip.raspberry",
+            "port": 1883,
+            "username": "smartgarden",
+            "password": "sg2021sg"
+        },
+        "topics": {
+            "log": {
+                "esp32cam": "log/esp32cam"
+            },
+            "sensors": {
+                "ambient": {
+                    "image": "sensors/ambient/image",
+                    "temperature": "sensors/ambient/temperature"
+                },
+                "soil": {
+                    "moisture": "sensors/soil/moisture"
+                }
+            },
+            "actuators":  {
+                "waterPump": {
+                    "state": "actuators/waterPump/state",
+                    "flow": "actuators/waterPump/flow"
+                }
+            },
+            "garden": {
+                "request": {
+                    "image": "garden/request/image",
+                    "sensors": "garden/request/sensors"
+                }
+            }
+        }
+    }
+}
