@@ -9,7 +9,6 @@ export default class FunctionRepeater {
 
   static async repeatAwaiting(interval, fn, ...params) {
     console.log('repeatAwaiting:', interval);
-    await fn(...params);
     setTimeout(async () => {
       await fn(...params);
       FunctionRepeater.repeatAwaiting(interval, fn, ...params);

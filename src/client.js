@@ -38,6 +38,8 @@ async function OnClientConnected(client) {
   await client.subscribe(topics.sensors.ambient.temperature);
 
   // Soil
+  // from SmartGardenArduino VALUE_SENSOR_SOIL_DRY 425 // seco
+  // from SmartGardenArduino VALUE_SENSOR_SOIL_WET 263 // humedo
   await Topic.createIfNotExists(topics.sensors.soil.moisture);
   await client.subscribe(topics.sensors.soil.moisture);
 
@@ -49,8 +51,14 @@ async function OnClientConnected(client) {
 
   debugLog('Topic subscriptions done,');
   debugLog('Awaiting for data!');
+
+  // Primer Request
+  requestGardenSensors(client).then(() => requestGardenImage(client));
+
   FunctonRepeater.repeatAwaiting(limits.dataCollectionTimeMs, requestGardenSensors, client);
   FunctonRepeater.repeatAwaiting(limits.imageCollectionTimeMs, requestGardenImage, client);
+  // requestGardenSensors(client);
+  // FunctonRepeater.repeatAwaiting(60 * 1000, requestGardenImage, client);
 
 }
 
